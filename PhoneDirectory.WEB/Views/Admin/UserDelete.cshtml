@@ -1,0 +1,42 @@
+﻿@model PhoneDirectory.WEB.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Удаление пользователя";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div class="alert alert-danger">
+        <h4>Подтвердите удаление...</h4>
+        Внимание, будут удалены все связанные данные!
+    </div>
+    <p class="h4">
+        @Html.DisplayFor(model => model.FullName)<br />
+        <small class="text-muted">@Html.DisplayFor(model => model.Role)</small>
+    </p>
+    <p>
+        Отдел:: @Html.DisplayFor(model => model.NameStrucDiv)<br />
+        Должность: @Html.DisplayFor(model => model.NamePost)<br />
+        Личный номер: @Html.DisplayFor(model => model.PersonalNum)<br />
+        Личный номер1: @Html.DisplayFor(model => model.PersonalNum1)<br />
+        E-Mail: <a href="mailto:@Html.DisplayFor(model => model.Email)">@Html.DisplayFor(model => model.Email)</a>
+    </p>
+
+    <form asp-controller="Admin" asp-action="UserDelete" asp-antiforgery="true">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        @if (Model.RoleId == 2)
+        {
+            <a asp-controller="Admin" asp-action="AllNumbers" class="btn btn-dark">Отмена</a>
+        }
+        else
+        {
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-dark">Отмена</a>
+        }
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

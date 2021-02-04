@@ -1,0 +1,46 @@
+﻿@model PhoneDirectory.WEB.Models.StructuralDivisionUsersViewModel
+
+@{
+    ViewData["Title"] = "Сотрудники отдела";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card-columns">
+    <div class="card mb-3">
+        <div class="card-header text-white bg-info">
+            @Model.StructuralDivision.Title
+        </div>
+        <div class="card-body bg-light">
+            <p class="h5 card-title mb-2">
+                @Model.StructuralDivision.NameStrucDiv
+            </p>          
+        </div>
+    </div>
+</div>
+
+@if (Model.Users.Count() > 0)
+{
+    <div class="card-columns">
+        @foreach (var item in Model.Users)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="h5 card-title mb-2">@Html.DisplayFor(modelItem => item.FullName)</p>
+                    <p class="mb-0">
+                        Полное имя: @Html.DisplayFor(modelItem => item.FullName)<br />
+                        Структурное подразделение: @Html.DisplayFor(modelItem => item.StrucDivId)<br />
+                        Отдел: @Html.DisplayFor(modelItem => item.PostId)<br />
+                        Личный номер: @Html.DisplayFor(modelItem => item.PersonalNum)<br />
+                        Личный номер1: @Html.DisplayFor(modelItem => item.PersonalNum)<br />                        
+                        E-Mail: <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                    </p>                   
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="lead text-danger">На занятие не записано занимающихся!</p>
+}

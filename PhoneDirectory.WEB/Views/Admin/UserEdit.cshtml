@@ -1,0 +1,64 @@
+﻿@model PhoneDirectory.WEB.Models.UserEditViewModel
+
+@{
+    ViewData["Title"] = "Изменение данных пользователя";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>@ViewData["Title"]</h1>
+        <form asp-action="UserEdit" asp-controller="Admin" asp-antiforgery="true">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.RoleId)
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patronymic" class="control-label"></label>
+                <input asp-for="Patronymic" class="form-control" />
+                <span asp-validation-for="Patronymic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StrucDivId" class="control-label"></label>
+                @Html.DropDownList("StrucDivId", null, htmlAttributes: new { @class = "form-control" })
+                <span asp-validation-for="StrucDivId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostId" class="control-label"></label>
+                @Html.DropDownList("PostId", null, htmlAttributes: new { @class = "form-control" })
+                <span asp-validation-for="PostId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Phone" class="control-label">Личный номер <small class="text-muted">+375-XX-XXX-XXXX</small></label>
+                <input asp-for="PersonalNum" class="form-control" />
+                <span asp-validation-for="PersonalNum" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label">Личный номер2 <small class="text-muted">+375-XX-XXX-XXXX</small></label>
+                <input asp-for="PersonalNum1" class="form-control" />
+                <span asp-validation-for="PersonalNum1" class="text-danger"></span>
+            </div>           
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

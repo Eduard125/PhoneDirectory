@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PhoneDirectory.WEB.Models.UserViewModel>
+
+
+@{
+    ViewData["Title"] = "Личные телефонные номера";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="UserCreate" asp-controller="Admin" asp-route-id="2" class="btn btn-sm btn-outline-dark" role="button" title="Добавить"><span class="fa fa-plus"></span></a>
+</p>
+@if (Model.Count() > 0)
+{
+    <div class="card-columns">
+        @foreach (var item in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="h5 card-title mb-2">@Html.DisplayFor(modelItem => item.FullName)</p>
+                    <p class="mb-0">
+                        Отдел: @Html.DisplayFor(modelItem => item.NameStrucDiv)<br />
+                        Должность: @Html.DisplayFor(modelItem => item.NamePost)<br />
+                        Личный номер: @Html.DisplayFor(modelItem => item.PersonalNum)<br />
+                        Личный номер1: @Html.DisplayFor(modelItem => item.PersonalNum1)<br />
+                        E-Mail: <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                    </p>
+                    <div class="mt-3">                        
+                        <a asp-action="UserEdit" asp-controller="Admin" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark" title="Изменить"><span class="fa fa-pencil"></span></a>
+                        <a asp-action="UserDelete" asp-controller="Admin" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark" title="Удалить"><span class="fa fa-trash"></span></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="lead text-danger">В системе не зарегистрированы сотрудники!</p>
+}

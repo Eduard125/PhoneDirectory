@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PhoneDirectory.WEB.Models.StructuralDivisionViewModel>
+
+@{
+    ViewData["Title"] = "Все отделы";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card mb-3">
+                <div class="card-header text-white bg-info">
+                    @item.Title
+                </div>
+                <div class="card-body bg-light">
+                    <p class="h5 card-title mb-2">
+                        @item.NameStrucDiv
+                    </p>                   
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

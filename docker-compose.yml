@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  phonedirectory.web:
+    image: ${DOCKER_REGISTRY-}phonedirectoryweb
+    build:
+      context: .
+      dockerfile: PhoneDirectory.WEB\Dockerfile
+
+  mywebapi:
+    image: ${DOCKER_REGISTRY-}mywebapi
+    build:
+      context: .
+      dockerfile: MyWebAPI\Dockerfile
+
