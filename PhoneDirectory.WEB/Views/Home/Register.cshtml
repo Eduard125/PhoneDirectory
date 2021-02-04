@@ -1,0 +1,85 @@
+﻿@model PhoneDirectory.WEB.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>@ViewData["Title"]</h1>
+        <form asp-action="Register" asp-controller="Home" asp-antiforgery="true">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label"></label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PasswordConfirm" class="control-label"></label>
+                <input asp-for="PasswordConfirm" class="form-control" />
+                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patronymic" class="control-label"></label>
+                <input asp-for="Patronymic" class="form-control" />
+                <span asp-validation-for="Patronymic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StrucDivId" class="control-label"></label>
+                @Html.DropDownList("StrucDivId", null, htmlAttributes: new { @class = "form-control" })
+                <span asp-validation-for="StrucDivId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PostId" class="control-label"></label>
+                @Html.DropDownList("PostId", null, htmlAttributes: new { @class = "form-control" })
+                <span asp-validation-for="PostId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label">Телефон <small class="text-muted">+375-XX-XXX-XXXX</small></label>
+                <input asp-for="PersonalNum" class="form-control" />
+                <span asp-validation-for="PersonalNum" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label">Телефон <small class="text-muted">XXXXXX</small></label>
+                <input asp-for="StrucDivNum" class="form-control" />
+                <span asp-validation-for="StrucDivNum" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label">Телефон <small class="text-muted">+375-XX-XXX-XXXX</small></label>
+                <input asp-for="StrucDivNum" class="form-control" />
+                <span asp-validation-for="StrucDivMobNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Регистрация" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

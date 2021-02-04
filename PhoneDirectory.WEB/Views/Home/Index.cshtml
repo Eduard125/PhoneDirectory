@@ -1,0 +1,18 @@
+﻿{
+    ViewData["Title"] = "Телефонный справочник";
+}
+
+<div>
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p class="h3">Добро пожаловать на наш сайт!</p>
+    <p class="text-justify">Номера отделов Производственного</p>
+    <p class="h5">объединения Белоруснефть</p>
+    <ul>
+        <li>телефон горячей линии 793434</li>
+    </ul>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p>Рекомендуем Вам <a asp-action="Login" asp-controller="Home">авторизоваться</a> </p>
+    }
+</div>
+
