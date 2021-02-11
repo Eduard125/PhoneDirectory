@@ -5,11 +5,11 @@ services:
     image: ${DOCKER_REGISTRY-}phonedirectoryweb
     build:
       context: .
-      dockerfile: PhoneDirectory.WEB\Dockerfile
-
-  mywebapi:
-    image: ${DOCKER_REGISTRY-}mywebapi
-    build:
-      context: .
-      dockerfile: MyWebAPI\Dockerfile
-
+      dockerfile: PhoneDirectory.WEB/Dockerfile
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+     - SA_PASSWORD=Pass123ABC#word
+     - ACCEPT_EULA=Y
+    ports:
+     - "5434:1433"

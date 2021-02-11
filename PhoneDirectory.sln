@@ -9,11 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneDirectory.BLL", "Phone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneDirectory.DAL", "PhoneDirectory.DAL\PhoneDirectory.DAL.csproj", "{872B0D0E-4669-48A2-9EAD-915FFCF9300A}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3CED6738-476D-40CB-8CBF-9601FCA00ADA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyWebAPI", "MyWebAPI", "{40344FDC-0305-44D3-AB11-5F82B56C36F0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebAPI", "MyWebAPI\MyWebAPI.csproj", "{85D1FEA8-82D7-4318-8EA2-4469E2DDDB55}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C211F2E8-C900-4DCF-AC28-994BF726AE7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,20 +29,13 @@ Global
 		{872B0D0E-4669-48A2-9EAD-915FFCF9300A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{872B0D0E-4669-48A2-9EAD-915FFCF9300A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{872B0D0E-4669-48A2-9EAD-915FFCF9300A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CED6738-476D-40CB-8CBF-9601FCA00ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CED6738-476D-40CB-8CBF-9601FCA00ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CED6738-476D-40CB-8CBF-9601FCA00ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CED6738-476D-40CB-8CBF-9601FCA00ADA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85D1FEA8-82D7-4318-8EA2-4469E2DDDB55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85D1FEA8-82D7-4318-8EA2-4469E2DDDB55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85D1FEA8-82D7-4318-8EA2-4469E2DDDB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85D1FEA8-82D7-4318-8EA2-4469E2DDDB55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C211F2E8-C900-4DCF-AC28-994BF726AE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C211F2E8-C900-4DCF-AC28-994BF726AE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C211F2E8-C900-4DCF-AC28-994BF726AE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C211F2E8-C900-4DCF-AC28-994BF726AE7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{85D1FEA8-82D7-4318-8EA2-4469E2DDDB55} = {40344FDC-0305-44D3-AB11-5F82B56C36F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A6B706D-3FB4-4734-9ECF-6036EF901337}

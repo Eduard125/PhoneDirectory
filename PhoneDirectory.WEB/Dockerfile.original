@@ -6,11 +6,12 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
 COPY ["PhoneDirectory.WEB/PhoneDirectory.WEB.csproj", "PhoneDirectory.WEB/"]
+COPY ["PhoneDirectory.BLL/PhoneDirectory.BLL.csproj", "PhoneDirectory.BLL/"]
+COPY ["PhoneDirectory.DAL/PhoneDirectory.DAL.csproj", "PhoneDirectory.DAL/"]
 RUN dotnet restore "PhoneDirectory.WEB/PhoneDirectory.WEB.csproj"
 COPY . .
 WORKDIR "/src/PhoneDirectory.WEB"

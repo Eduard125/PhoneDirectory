@@ -6,10 +6,5 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
-
-  mywebapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
-
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
