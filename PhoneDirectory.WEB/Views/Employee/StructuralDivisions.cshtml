@@ -7,7 +7,7 @@
 
 <h1>@ViewData["Title"]</h1>
 <p>
-    <a href="#collapseFilter" class="btn btn-sm btn-outline-dark" role="button" title="Отбор" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter"><span class="fa fa-filter"></span></a>    
+    <a href="#collapseFilter" class="btn btn-sm btn-outline-dark" role="button" title="Отбор" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter"><span class="fa fa-filter"></span></a>
 </p>
 <div class="collapse mb-3" id="collapseFilter">
     <div class="card card-body">
@@ -57,19 +57,16 @@
                     </div>
                     <div class="card-body bg-light">
                         <p class="h5 card-title mb-2">
-                            @item.NameStrucDiv                           
-                            @item.NamePost                            
+                            @item.NameStrucDiv                            
+                            @item.NamePost                           
                             Телефон отдела1(городской): @item.NameDepartmentNumber
                             Телефон отдела2(городской): @item.NameDepartmentNumber1
                             Телефон отдела1(мобильный): @item.NameDepartmentMobNumber
                             Телефон отдела2(мобильный): @item.NameDepartmentMobNumber1
                         </p>
                     </div>
-
                     <div class="mt-2">
-                        <a asp-action="DepStaff" asp-controller="Admin" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark" title="Сотрудники отдела"><span class="fa fa-users"></span></a>                        
-                        <a asp-action="StructuralDivisionEdit" asp-controller="Admin" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark" title="Изменить"><span class="fa fa-edit"></span></a>
-                        <a asp-action="StructuralDivisionDelete" asp-controller="Admin" asp-route-id="@item.PostId" class="btn btn-sm btn-outline-dark" title="Удалить"><span class="fa fa-trash"></span></a>
+                        <a asp-action="DepStaff" asp-controller="Employee" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark" title="Сотрудники отдела"><span class="fa fa-users"></span></a>                        
                     </div>
                 </div>
             </div>

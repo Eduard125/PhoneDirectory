@@ -34,7 +34,6 @@ namespace PhoneDirectory.DAL.Repositories
             
         }
 
-
         public void Create(User item)
         {
             db.Users.Add(item);
@@ -50,6 +49,7 @@ namespace PhoneDirectory.DAL.Repositories
             User item = db.Users.Find(id);
             if (item != null) db.Users.Remove(item);
         }
-
     }
 }
+
+

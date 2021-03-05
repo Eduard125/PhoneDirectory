@@ -44,15 +44,18 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                                         <a class="dropdown-item" asp-controller="Admin" asp-action="Index">Админка</a>
                                         <a class="dropdown-item" asp-controller="Admin" asp-action="AllNumbers">Все номера</a>
-                                        <a class="dropdown-item" asp-controller="Admin" asp-action="StructuralDivisions">Струк подр</a>
-                                        <a class="dropdown-item" asp-controller="Admin" asp-action="Users">Сотрудники отдела</a>
+                                        <a class="dropdown-item" asp-controller="Admin" asp-action="StructuralDivisions">Отделы</a>
                                     </div>
                                 </li>
                             }
                             @if (User.IsInRole("employee"))
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Employee" asp-action="Index">Все номера</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Сотрудник</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                        <a class="nav-link" asp-controller="Employee" asp-action="Index">Все номера</a>
+                                        <a class="dropdown-item" asp-controller="Employee" asp-action="StructuralDivisions">Отделы</a>
+                                    </div>
                                 </li>
                             }
                         }

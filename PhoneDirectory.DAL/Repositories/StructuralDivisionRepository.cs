@@ -48,7 +48,7 @@ namespace PhoneDirectory.DAL.Repositories
             StructuralDivision item = db.StructuralDivisions.Find(id);
             if (item != null) db.StructuralDivisions.Remove(item);
         }
-
-
     }
 }
+
+

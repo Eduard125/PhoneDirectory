@@ -13,18 +13,8 @@ namespace PhoneDirectory.WEB.Models
         [Display(Name = "Отдел")]
         public int StrucDivId { get; set; }
         [Required(ErrorMessage = "Выберите имя отдела")]
-        [Display(Name = "Имя отдела")]
-        //public string NameStrucDiv { get; set; }
-        //[Required(ErrorMessage = "Выберите должность")]
-        //[Display(Name = "Должность")]
-        //public int PostId { get; set; }        
-        //[Required(ErrorMessage = "Выберите имя должности")]
-        //[Display(Name = "Имя должности")]
-        //public string NamePost { get; set; }
-        //[Required(ErrorMessage = "Служебный номер")]
-        //[Display(Name = "Служебный номер")]
-        public string StrucDivNum { get; set; }       
-
+        [Display(Name = "Имя отдела")]       
+        public string StrucDivNum { get; set; }
         [Required(ErrorMessage = "Служебный номер1")]
         [Display(Name = "Служебный номер1")]
         public string StrucDivNum1 { get; set; }

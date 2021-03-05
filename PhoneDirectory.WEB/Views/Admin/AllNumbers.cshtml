@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<PhoneDirectory.WEB.Models.UserViewModel>
 
-
 @{
     ViewData["Title"] = "Личные телефонные номера";
 }
@@ -8,7 +7,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="UserCreate" asp-controller="Admin" asp-route-id="2" class="btn btn-sm btn-outline-dark" role="button" title="Добавить"><span class="fa fa-plus"></span></a>
+    <a asp-action="UserCreate" asp-controller="Admin" asp-route-id="1" class="btn btn-sm btn-outline-dark" role="button" title="Добавить"><span class="fa fa-plus"></span></a>
 </p>
 @if (Model.Count() > 0)
 {

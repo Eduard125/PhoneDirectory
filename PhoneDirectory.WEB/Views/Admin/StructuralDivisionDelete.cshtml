@@ -1,0 +1,33 @@
+﻿@model PhoneDirectory.WEB.Models.StructuralDivisionViewModel
+
+@{
+    ViewData["Title"] = "Удаление отдела";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div class="alert alert-danger">
+        <h4>Подтвердите удаление...</h4>
+        Внимание, будут удалены все связанные данные!
+    </div>
+    <p class="h4">@Model.Title</p>
+    <p class="h5 mb-2">
+        @Model.StrucDivId
+    </p>
+    <p class="mb-2">
+        @Model.PostId<br />        
+    </p>
+    <p>
+        <span class="text-primary">@Model.NameDepartmentNumber</span>
+        <span class="text-primary">@Model.NameDepartmentNumber1</span>
+        <span class="text-primary">@Model.NameDepartmentMobNumber</span>
+        <span class="text-primary">@Model.NameDepartmentMobNumber1</span>
+    </p>
+
+    <form asp-controller="Admin" asp-action="StructuralDivisionDelete" asp-antiforgery="true">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a asp-controller="Admin" asp-action="StructuralDivisions" class="btn btn-dark">Отмена</a>
+    </form>
+</div>

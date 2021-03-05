@@ -63,8 +63,6 @@ namespace PhoneDirectory.WEB.Models
         [Display(Name = "Личный номер2")]
         public string PersonalNum1 { get; set; }
 
-
-
         [Required(ErrorMessage = "Укажите E-mail")]
         [MaxLength(50, ErrorMessage = "Не более 100 символов")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Укажите корректный E-mail")]

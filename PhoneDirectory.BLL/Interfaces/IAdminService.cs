@@ -10,8 +10,7 @@ namespace PhoneDirectory.BLL.Interfaces
     {
         void InitDB(IUnitOfWork unitOfWork);
 
-        UserDTO GetUser(int id);
-        
+        UserDTO GetUser(int id);        
         IEnumerable<UserDTO> GetUsers(int structuralDivisionId);
         IEnumerable<UserDTO> GetUsers();
         void CreateUser(UserDTO userDTO, string password);
@@ -50,9 +49,8 @@ namespace PhoneDirectory.BLL.Interfaces
 
         DivisionPostDTO GetDivisionPost(int id);
         void UpdateDivisionPost(DivisionPostDTO divisionPostDTO);
-
-
-
-
+        void DeleteDivisionPost(int id);
     }
 }
+
+

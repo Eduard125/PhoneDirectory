@@ -14,14 +14,12 @@
         <div class="card-body bg-light">
             <p class="h5 card-title mb-2">
                 @Model.StructuralDivision.NameStrucDiv
-            </p>          
+            </p>
         </div>
     </div>
 </div>
 
-<p>
-    <a asp-action="UserCreate" asp-controller="Admin" asp-route-id="1" class="btn btn-sm btn-outline-dark" role="button" title="Добавить"><span class="fa fa-plus"></span></a>
-</p>
+
 @if (Model.Users.Count() > 0)
 {
     <div class="card-columns">
@@ -37,11 +35,7 @@
                         Личный номер: @Html.DisplayFor(modelItem => item.PersonalNum)<br />
                         Личный номер1: @Html.DisplayFor(modelItem => item.PersonalNum1)<br />
                         E-Mail: <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
-                    </p>
-                    <div class="mt-3">
-                        <a asp-action="UserEdit" asp-controller="Admin" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark" title="Изменить"><span class="fa fa-edit"></span></a>
-                        <a asp-action="UserDelete" asp-controller="Admin" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark" title="Удалить"><span class="fa fa-trash"></span></a>
-                    </div>
+                    </p>                    
                 </div>
             </div>
         }

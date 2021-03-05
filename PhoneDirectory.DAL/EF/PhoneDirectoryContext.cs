@@ -17,7 +17,6 @@ namespace PhoneDirectory.DAL.EF
         public DbSet<DepartmentNumber> DepartmentNumbers { get; set; }
         public DbSet<DepartmentMobNumber> DepartmentMobNumbers { get; set; }
 
-
         public PhoneDirectoryContext(string connectionString)
         {
             this.connectionString = connectionString;            
@@ -75,8 +74,8 @@ namespace PhoneDirectory.DAL.EF
                .HasKey(p => new { p.StrucDivId, p.PostId });
             modelBuilder.Entity<User>()
                 .HasAlternateKey(p => p.Login);
-            // Начальные данные 
 
+            // Начальные данные
             modelBuilder.Entity<Role>().HasData(new Role[]
                 {
                     new Role { Id = 1, Name = "Администратор", Design = "admin" },

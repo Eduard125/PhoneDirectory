@@ -20,10 +20,7 @@ namespace PhoneDirectory.BLL.Services
         public void InitDB(IUnitOfWork unitOfWork)
         {
             DB = unitOfWork;
-        }     
-       
-
-      
+        }      
         public UserDTO GetUser(int id)
         {
             User user = DB.Users.Get(id);
@@ -47,7 +44,6 @@ namespace PhoneDirectory.BLL.Services
                 Email = user.Email
             };
         }
-
         public IEnumerable<UserDTO> GetUsers(int strucDivId)
         {
             List<UserDTO> list = new List<UserDTO>();
@@ -147,8 +143,7 @@ namespace PhoneDirectory.BLL.Services
             if (user == null)
             {
                 DB.Users.Create(new User
-                {
-                    //Id = userDTO.Id,
+                {                    
                     Login = userDTO.Login,
                     Password = StringHelper.GetMD5(password),
                     RoleId = userDTO.RoleId,
@@ -283,12 +278,11 @@ namespace PhoneDirectory.BLL.Services
             {
                 divisionPosts = divisionPosts.Where(p => p.PostId == filter.PostId).ToList();
             }
-            //var divisionPosts = DB.DivisionPosts.GetAll().ToList();            
+                       
             foreach (var divisionPost in divisionPosts)
             {
                 StructuralDivisionDTO item = new StructuralDivisionDTO
-                {
-                    //Id = divisionPost.Id,
+                {                    
                     StrucDivId = divisionPost.StrucDivId,
                     PostId = divisionPost.PostId,
                     NameStrucDiv = divisionPost.StructuralDivision.NameStrucDiv,
@@ -365,9 +359,9 @@ namespace PhoneDirectory.BLL.Services
             }
         }
 
-        public StructuralDivisionDTO GetStructuralDivision(int id)
+        public StructuralDivisionDTO GetStructuralDivision(int strucDivId)
         {
-            StructuralDivision structuralDivision = DB.StructuralDivisions.Get(id);
+            StructuralDivision structuralDivision = DB.StructuralDivisions.Get(strucDivId);
             if (structuralDivision == null) return null;
             return new StructuralDivisionDTO
             {
@@ -578,22 +572,18 @@ namespace PhoneDirectory.BLL.Services
             }
             else
             {
-                var mapperdivisionPost = new MapperConfiguration(cfg => cfg.CreateMap<DivisionPost, DivisionPostDTO>()).CreateMapper();
-                var dtoDivisionPost = mapperdivisionPost.Map<DivisionPost, DivisionPostDTO>(divisionPost);
+                var mapperDivisionPost = new MapperConfiguration(cfg => cfg.CreateMap<DivisionPost, DivisionPostDTO>()).CreateMapper();
+                var dtoDivisionPost = mapperDivisionPost.Map<DivisionPost, DivisionPostDTO>(divisionPost);
                 return dtoDivisionPost;
             }
         }
-
-
 
         public void UpdateDivisionPost(DivisionPostDTO divisionPostDTO)
         {
             var divisionPost = DB.DivisionPosts.Get(divisionPostDTO.Id);
             var structuralDivisions = DB.StructuralDivisions.Get(divisionPostDTO.StrucDivId);
-            var posts = DB.Posts.Get(divisionPostDTO.PostId);
-            //var divisionPosts = DB.DivisionPosts.GetAll().ToList();
-            var departmentNumber = DB.DepartmentNumbers.Get(divisionPostDTO.StrucDivId);
-            //var departmentmobNumbers = DB.DepartmentMobNumbers.GetAll().ToList();
+            var posts = DB.Posts.Get(divisionPostDTO.PostId);            
+            var departmentNumber = DB.DepartmentNumbers.Get(divisionPostDTO.StrucDivId);            
             if (divisionPost == null)
             {
                 throw new ValidationException("Отдел не найден!", "");
@@ -601,11 +591,9 @@ namespace PhoneDirectory.BLL.Services
             else
             {
                 if (DB.DivisionPosts.Find(p => p.StrucDivId == divisionPostDTO.StrucDivId).Count() > 0)
-                {
-                    //divisionPost.StrucDivId = divisionPostDTO.StrucDivId;
+                {                   
                     departmentNumber.StrucDivNum = divisionPostDTO.StrucDivNum;
-                    departmentNumber.StrucDivNum1 = divisionPostDTO.StrucDivNum1;
-                    //divisionPost.Post.NamePost = divisionPostDTO.Post.NamePost;
+                    departmentNumber.StrucDivNum1 = divisionPostDTO.StrucDivNum1;                   
                     DB.DepartmentNumbers.Update(departmentNumber);
                     DB.Save();
                 }                
@@ -613,6 +601,30 @@ namespace PhoneDirectory.BLL.Services
                 {
                     throw new ValidationException("Отдел и должность недоступны!", "");
                 }                
+            }
+        }
+
+        public void DeleteDivisionPost(int id)
+        {
+            var divisionPost = DB.DivisionPosts.Get(id);
+            if (divisionPost == null)
+            {
+                throw new ValidationException("Отдел не найден!", "");
+            }
+            else
+            {                
+                var divisionPosts = DB.DivisionPosts.Find(p => p.Id == id).ToList();
+                foreach (var divisionPost1 in divisionPosts)
+                {
+                    DB.DivisionPosts.Delete(divisionPost1.StrucDivId, divisionPost1.PostId);
+                }
+                var posts = DB.Posts.Find(p => p.Id == id).ToList();
+                foreach (var post in posts)
+                {
+                    DB.Posts.Delete(post.Id);
+                }
+                DB.Users.Delete(id);
+                DB.Save();
             }
         }
     }

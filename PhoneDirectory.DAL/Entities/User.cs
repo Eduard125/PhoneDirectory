@@ -28,8 +28,5 @@ namespace PhoneDirectory.DAL.Entities
         public string Email { get; set; }
 
         public ICollection<DivisionPost> DivisionPosts { get; set; }
-        //public ICollection<StructuralDivision> StructuralDivisions { get; set; }
-        //public ICollection<DepartmentNumber> DepartmentNumbers { get; set; }
-
     }
 }

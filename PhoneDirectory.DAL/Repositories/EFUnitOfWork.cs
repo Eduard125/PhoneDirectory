@@ -67,9 +67,8 @@ namespace PhoneDirectory.DAL.Repositories
                 if (postRepository == null) postRepository = new PostRepository(db);
                 return postRepository;
             }
-        }    
-
-      
+        }  
+        
         public IRepository<DepartmentNumber> DepartmentNumbers
         {
             get
@@ -78,6 +77,7 @@ namespace PhoneDirectory.DAL.Repositories
                 return departmentNumberRepository;
             }
         }
+
         public IRepository<DepartmentMobNumber> DepartmentMobNumbers
         {
             get
@@ -104,7 +104,6 @@ namespace PhoneDirectory.DAL.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
         public void Save()
         {
             db.SaveChanges();

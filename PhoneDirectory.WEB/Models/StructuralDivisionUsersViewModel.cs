@@ -7,9 +7,7 @@ namespace PhoneDirectory.WEB.Models
 {
     public class StructuralDivisionUsersViewModel
     {       
-        public StructuralDivisionViewModel StructuralDivision { get; set; }      
-           
-        public List<UserViewModel> Users { get; set; }
-        
+        public StructuralDivisionViewModel StructuralDivision { get; set; }           
+        public List<UserViewModel> Users { get; set; }        
     }
 }

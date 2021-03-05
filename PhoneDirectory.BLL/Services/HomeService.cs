@@ -71,26 +71,7 @@ namespace PhoneDirectory.BLL.Services
                     PostId = registerDTO.PostId,
                     Email = registerDTO.Email
                 });
-                DB.Save();
-                //DB.PersonalNumbers.Create(new PersonalNumber
-                //{
-                //    UserId = user.Id,
-                //    PersonalNum = registerDTO.PersonalNum,
-                //    PersonalNum1 = registerDTO.PersonalNum1
-                //});
-                //DB.Save();
-                //DB.DepartmentNumbers.Create(new DepartmentNumber
-                //{
-                //    StrucDivId = registerDTO.StrucDivId,
-                //    StrucDivNum = registerDTO.StrucDivNum
-                //});
-                //DB.Save();
-                //DB.DepartmentMobNumbers.Create(new DepartmentMobNumber
-                //{
-                //    StrucDivId = registerDTO.StrucDivId,
-                //    StrucDivMobNum = registerDTO.StrucDivMobNum
-                //});
-                //DB.Save();
+                DB.Save();                
             }
             else
             {
@@ -114,16 +95,16 @@ namespace PhoneDirectory.BLL.Services
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Post, PostDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<Post>, List<PostDTO>>(DB.Posts.GetAll());
         }
-
         public IEnumerable<RoleDTO> GetRoles()
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Role, RoleDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<Role>, List<RoleDTO>>(DB.Roles.GetAll());
         }
-
         public void Dispose()
         {
             DB.Dispose();
         }
     }
 }
+
+

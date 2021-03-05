@@ -37,8 +37,9 @@ namespace PhoneDirectory.WEB
             services.AddSingleton(a => new EFUnitOfWork(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IHomeService, HomeService>();
             services.AddSingleton<IAdminService, AdminService>();
-           
-            
+            services.AddSingleton<IEmployeeService, EmployeeService>();
+
+
 
             services.AddControllersWithViews();
 
@@ -47,11 +48,12 @@ namespace PhoneDirectory.WEB
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, EFUnitOfWork unitOfWork, IHomeService homeService, IAdminService adminService)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, EFUnitOfWork unitOfWork, IHomeService homeService, IAdminService adminService, IEmployeeService employeeService)
         {
             // Инициализация сервисов BLL
             homeService.InitDB(unitOfWork);
             adminService.InitDB(unitOfWork);
+            employeeService.InitDB(unitOfWork);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

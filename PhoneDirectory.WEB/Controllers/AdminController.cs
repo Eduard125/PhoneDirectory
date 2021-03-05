@@ -72,8 +72,8 @@ namespace PhoneDirectory.WEB.Controllers
             {
                 IEnumerable<UserDTO> dtosUsers = adminService.GetUsers();
                 if (dtosUsers == null) return NotFound();
-                var mapperPupils = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, UserViewModel>()).CreateMapper();
-                var model = mapperPupils.Map<IEnumerable<UserDTO>, List<UserViewModel>>(dtosUsers);
+                var mapperStaff = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, UserViewModel>()).CreateMapper();
+                var model = mapperStaff.Map<IEnumerable<UserDTO>, List<UserViewModel>>(dtosUsers);
                 return View("DepStaff", model);
             }
             else
@@ -82,44 +82,33 @@ namespace PhoneDirectory.WEB.Controllers
                 if (dtostructuralDivision == null) return NotFound();
                 IEnumerable<UserDTO> dtosUsers = adminService.GetUsers(dtostructuralDivision.Id);
                 if (dtosUsers == null) return NotFound();
-                var mapperGroup = new MapperConfiguration(cfg => cfg.CreateMap<StructuralDivisionDTO, StructuralDivisionViewModel>()).CreateMapper();
+                var mapperStructuralDivision = new MapperConfiguration(cfg => cfg.CreateMap<StructuralDivisionDTO, StructuralDivisionViewModel>()).CreateMapper();
                 var mapperUser = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, UserViewModel>()).CreateMapper();
                 StructuralDivisionUsersViewModel model = new StructuralDivisionUsersViewModel
                 {
-                    StructuralDivision = mapperGroup.Map<StructuralDivisionDTO, StructuralDivisionViewModel>(dtostructuralDivision),
+                    StructuralDivision = mapperStructuralDivision.Map<StructuralDivisionDTO, StructuralDivisionViewModel>(dtostructuralDivision),
                     Users = mapperUser.Map<IEnumerable<UserDTO>, List<UserViewModel>>(dtosUsers)
                 };
                 return View("StructuralDivisionUsers", model);
             }
         }
 
-        [HttpGet]
+        
         public IActionResult StructuralDivisions()
         {
-            StructuralDivisionsFilterViewModel filter = new StructuralDivisionsFilterViewModel { StrucDivId = 1, PostId = 1, UseStructuralDivision = false, UsePost= false };
-            //filter = new StructuralDivisionsFilterViewModel { StrucDivId = 1, PostId = 1 };
+            StructuralDivisionsFilterViewModel filter = new StructuralDivisionsFilterViewModel { StrucDivId = 1, PostId = 1, UseStructuralDivision = false, UsePost= false };            
             var dtosStructuralDivisions = adminService.GetStructuralDivisions();
             var mapperStructuralDivision = new MapperConfiguration(cfg => cfg.CreateMap<StructuralDivisionDTO, StructuralDivisionViewModel>()).CreateMapper();
             ViewData["StructuralDivisions"] = mapperStructuralDivision.Map<IEnumerable<StructuralDivisionDTO>, List<StructuralDivisionViewModel>>(dtosStructuralDivisions);
-            ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", filter.StrucDivId);
-            //ViewData["NameStrucDiv"] = new SelectList(adminService.GetStructuralDivisions(), "Id", "NameStrucDiv", filter.NameStrucDiv);
-            //ViewData["UserId"] = new SelectList(adminService.GetUsers(), "Id", "FullName", filter.UserId);
-            ViewData["PostId"] = new SelectList(adminService.GetPosts(), "Id", "NamePost", filter.PostId);
-            //ViewData["NamePost"] = new SelectList(adminService.GetPosts(), "Id", "Name", filter.NamePost);
-            //ViewData["DepartmentNumberId"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "Name", filter.DepartmentNumberId);
-            //ViewData["DepartmentNumber1Id"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "Name", filter.DepartmentNumber1Id);
-            //ViewData["DepartmentMobNumberId"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "Name", filter.DepartmentMobNumberId);
-            //ViewData["DepartmentMobNumber1Id"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "Name", filter.DepartmentMobNumber1Id);
+            ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", filter.StrucDivId);            
+            ViewData["PostId"] = new SelectList(adminService.GetPosts(), "Id", "NamePost", filter.PostId);           
             return View(filter);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult StructuralDivisions(StructuralDivisionsFilterViewModel filter)
-        {
-            //DepartmentNumberDTO dtoDepartmentNumber = adminService.GetDepartmentNumbers();
-            //if (dtoDepartmentNumber == null) return NotFound(); 
-           
+        {           
             var mapperFilter = new MapperConfiguration(cfg => cfg.CreateMap<StructuralDivisionsFilterViewModel, StructuralDivisionsFilterDTO>()).CreateMapper();
             var dtosStructuralDivisions = adminService.GetStructuralDivisions(mapperFilter.Map<StructuralDivisionsFilterViewModel, StructuralDivisionsFilterDTO>(filter));            
             var mapperGroup = new MapperConfiguration(cfg => cfg.CreateMap<StructuralDivisionDTO, StructuralDivisionViewModel>()).CreateMapper();
@@ -134,29 +123,23 @@ namespace PhoneDirectory.WEB.Controllers
         {
             if (id == null) return NotFound();
             var dtoDivisionPost = adminService.GetDivisionPost((int)id);
-            var mapperDivisionPost = new MapperConfiguration(cfg => cfg.CreateMap<DivisionPostDTO, StructuralDivisionCreateViewModel>()).CreateMapper();
-            //var model = mapperDivisionPost.Map<DivisionPostDTO, StructuralDivisionCreateViewModel>(dtoDivisionPost);
+            var mapperDivisionPost = new MapperConfiguration(cfg => cfg.CreateMap<DivisionPostDTO, StructuralDivisionCreateViewModel>()).CreateMapper();            
             StructuralDivisionCreateViewModel model = new StructuralDivisionCreateViewModel { StrucDivId = 1 };
-            ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", model.StrucDivId);
-            //ViewData["StrucDivNum"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "StrucDivNum", model.StrucDivNum);
-            //ViewData["StrucDivNum1"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "StrucDivNum1", model.StrucDivNum1);            
+            ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", model.StrucDivId);            
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult StructuralDivisionEdit(StructuralDivisionCreateViewModel model)
-        {
-            //ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", model.StrucDivId);
+        {            
             if (ModelState.IsValid)
             {
                 try
                 {
                     var mapperDivisionPost = new MapperConfiguration(cfg => cfg.CreateMap<StructuralDivisionCreateViewModel, DivisionPostDTO>()).CreateMapper();
                     var dtoDivisionPost = mapperDivisionPost.Map<StructuralDivisionCreateViewModel, DivisionPostDTO>(model);
-                    ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", model.StrucDivId);
-                    //ViewData["StrucDivNum"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "StrucDivNum", model.StrucDivNum);
-                    //ViewData["StrucDivNum1"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "StrucDivNum1", model.StrucDivNum1);
+                    ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", model.StrucDivId);                    
                     adminService.UpdateDivisionPost(dtoDivisionPost);
                     return RedirectToAction("StructuralDivisions");
                 }
@@ -164,44 +147,40 @@ namespace PhoneDirectory.WEB.Controllers
                 {
                     ModelState.AddModelError(ex.Property, ex.Message);
                 }
-            }
-            //ViewData["StrucDivId"] = new SelectList(adminService.GetStructuralDivisions1(), "Id", "NameStrucDiv", model.StrucDivId);
-            //ViewData["StrucDivNum"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "StrucDivNum", model.StrucDivNum);
-            //ViewData["StrucDivNum1"] = new SelectList(adminService.GetDepartmentNumbers(), "Id", "StrucDivNum1", model.StrucDivNum1);
-
+            }            
             return View(model);
         }
 
-        //[HttpGet]
-        //public IActionResult StructuralDivisionDelete(int? id)
-        //{
-        //    if (id == null) return NotFound();
-        //    GroupDTO dtoGroup = adminService.GetGroup((int)id);
-        //    if (dtoGroup == null) return NotFound();
-        //    var mapperGroup = new MapperConfiguration(cfg => cfg.CreateMap<GroupDTO, GroupViewModel>()).CreateMapper();
-        //    var model = mapperGroup.Map<GroupDTO, GroupViewModel>(dtoGroup);
-        //    return View(model);
-        //}
+        [HttpGet]
+        public IActionResult StructuralDivisionDelete(int? id)
+        {
+            if (id == null) return NotFound();
+            DivisionPostDTO dtodivisionPost = adminService.GetDivisionPost((int)id);
+            if (dtodivisionPost == null) return NotFound();
+            var mapperGroup = new MapperConfiguration(cfg => cfg.CreateMap<DivisionPostDTO, StructuralDivisionViewModel>()).CreateMapper();
+            var model = mapperGroup.Map<DivisionPostDTO, StructuralDivisionViewModel>(dtodivisionPost);
+            return View(model);
+        }
 
-        //[HttpPost, ActionName("GroupDelete")]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult StructuralDivisionDeleteConfirmed(int id)
-        //{
-        //    try
-        //    {
-        //        adminService.DeleteParty(id);
-        //        return RedirectToAction("Groups");
-        //    }
-        //    catch (ValidationException ex)
-        //    {
-        //        ModelState.AddModelError(ex.Property, ex.Message);
-        //    }
-        //    GroupDTO dtoGroup = adminService.GetGroup(id);
-        //    if (dtoGroup == null) return NotFound();
-        //    var mapperGroup = new MapperConfiguration(cfg => cfg.CreateMap<GroupDTO, GroupViewModel>()).CreateMapper();
-        //    var model = mapperGroup.Map<GroupDTO, GroupViewModel>(dtoGroup);
-        //    return View(model);
-        //}
+        [HttpPost, ActionName("StructuralDivisionDelete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult StructuralDivisionDeleteConfirmed(int id)
+        {
+            try
+            {
+                adminService.DeleteDivisionPost(id);
+                return RedirectToAction("StructuralDivisions");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+            }
+            DivisionPostDTO dtoDivisionPost = adminService.GetDivisionPost(id);
+            if (dtoDivisionPost == null) return NotFound();
+            var mapperGroup = new MapperConfiguration(cfg => cfg.CreateMap<DivisionPostDTO, StructuralDivisionViewModel>()).CreateMapper();
+            var model = mapperGroup.Map<DivisionPostDTO, StructuralDivisionViewModel>(dtoDivisionPost);
+            return View(model);
+        }
 
         [HttpGet]
         public IActionResult UserCreate(int? id)

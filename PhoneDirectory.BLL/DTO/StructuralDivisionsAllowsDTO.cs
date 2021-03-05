@@ -9,8 +9,7 @@ namespace PhoneDirectory.BLL.DTO
         public int StrucDivId { get; set; }
         public string NameStrucDiv { get; set; }
         public int PostId { get; set; }
-        public string NamePost { get; set; }
-       // public List<SimpleDataDTO> StructuralDivisions { get; set; }
+        public string NamePost { get; set; }      
 
     }
 }

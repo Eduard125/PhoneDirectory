@@ -21,7 +21,6 @@ namespace PhoneDirectory.WEB.Models
         public string NamePost { get; set; }
         public string Email { get; set; }
         public string PersonalNum { get; set; }
-        public string PersonalNum1 { get; set; }        
-       
+        public string PersonalNum1 { get; set; }       
     }
 }
